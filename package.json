@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node init.js"
+    "start": "nodemon --exec babel-node init.js -e pug"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "prettier-plugin-pug": "^1.0.0-alpha.8",
+    "pug": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
