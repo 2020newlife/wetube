@@ -1,16 +1,12 @@
-extends layouts/main
-include mixins/videoBlock
+extends layout/main
+include mixin/videoBlock
 
 block content
-    .test
-        <video src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" controls></video>
-    <h2>1234</h2>
     .videos
-        h1 비디오 목록
-            each video in videos
-                +videoBlock({
-                    title: video.title,
-                    description: video.description,
-                    views:video.views,
-                    videoFile: video.videoFile
+        each video in videos
+            +videoBlock({
+                title:video.title, 
+                description:video.description,
+                views:video.views,
+                videoFile:video.videoFile
             })

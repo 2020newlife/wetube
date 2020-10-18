@@ -11,13 +11,13 @@ import { localMiddleware } from './middleware';
 
 const app = express();
 
+app.use(helmet());
 app.set('view engine', 'pug');
-
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(morgan('short'));
+app.use(morgan('dev'));
+// 사용자가 만든 미들웨어 설정
 
 app.use(localMiddleware);
 app.use(routes.home, globalRouter);

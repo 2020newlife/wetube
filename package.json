@@ -16,7 +16,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "helmet": "^3.18.0", 
+    "helmet": "^3.18.0",
     "morgan": "^1.10.0",
     "prettier-plugin-pug": "^1.0.0-alpha.8",
     "pug": "^3.0.0"

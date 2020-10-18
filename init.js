@@ -2,6 +2,6 @@ import app from './app';
 
 const PORT = 5000;
 const handleListening = () =>
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`http://127.0.0.1:${PORT} 경로로 서버 시작!`);
 
 app.listen(PORT, handleListening);

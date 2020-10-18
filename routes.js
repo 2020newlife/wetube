@@ -7,6 +7,7 @@ const SEARCH = '/search';
 
 // Users
 const USERS = '/users';
+//  :id로 입력하면 변하는 값이라는걸 인식한다.
 const USERS_DETAIL = '/:id';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
@@ -25,14 +26,14 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  userDetail: USERS_DETAIL,
-  editProfile: EDIT_PROFILE,
-  changePassword: CHANGE_PASSWORD,
+  user_detail: USERS_DETAIL,
+  edit_profile: EDIT_PROFILE,
+  change_password: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
-  editVideo: EDIT_VIDEO,
-  deleteVideo: DELETE_VIDEO,
+  video_detail: VIDEO_DETAIL,
+  edit_video: EDIT_VIDEO,
+  delete_video: DELETE_VIDEO,
 };
 
 export default routes;
