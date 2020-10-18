@@ -16,15 +16,15 @@ export const search = (req, res) => {
 };
 
 //video
-export const video_getUpload = (req, res) => {
+export const videoGetUpload = (req, res) => {
   res.render('video/video_upload', { pageTitle: 'Upload' });
 };
-export const video_postUpload = (req, res) => {
+export const videoPostUpload = (req, res) => {
   const {
     body: { file, title, description },
   } = req;
   // To Do : 비디오 저장 및 업로드
-  res.redirect(routes.videos_detail(33333));
+  res.redirect(routes.video_detail(33333));
 };
 export const video_detail = (req, res) => {
   res.render('video/video_detail', { pageTitle: 'Video Detail' });
