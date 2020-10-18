@@ -25,6 +25,7 @@ export const postLogin = (req, res) => {
   res.redirect(routes.home);
 };
 export const logout = (req, res) =>
+  //To Do : 로그아웃 로직 추가
   res.render('user/logout', { pageTitle: 'Logout' });
 //user
 export const edit_profile = (req, res) =>
