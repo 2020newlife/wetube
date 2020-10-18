@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nodemonConfig": {
+    "ext": "js json mjs pug",
+    "delay": "3000"
+  },
   "scripts": {
-    "start": "nodemon --exec babel-node init.js -e pug"
+    "start": "nodemon --exec babel-node init.js"
   },
   "author": "",
   "license": "ISC",
