@@ -26,12 +26,18 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  user_detail: USERS_DETAIL,
+  user_detail: (id) => {
+    if (id) return `/users/${id}`;
+    else return USERS_DETAIL;
+  },
   edit_profile: EDIT_PROFILE,
   change_password: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  video_detail: VIDEO_DETAIL,
+  video_detail: (id) => {
+    if (id) return `/videos/${id}`;
+    else return VIDEO_DETAIL;
+  },
   edit_video: EDIT_VIDEO,
   delete_video: DELETE_VIDEO,
 };

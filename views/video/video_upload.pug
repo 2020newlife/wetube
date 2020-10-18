@@ -4,7 +4,7 @@ block content
     .form_container
         form(action=`/videos${routes.upload}`, method="post")
             label(for="file") 비디오 파일
-            input(type="file", name="file", id="file")
-            input(type="text", name="title", placeholder="영상의 제목을 입력해주세요.")
-            textarea(name="description", placeholder="영상에 대한 설명을 입력해주세요.")
+            input(type="file", name="file", id="file", required=true)
+            input(type="text", name="title", placeholder="영상의 제목을 입력해주세요.", required=true)
+            textarea(name="description", placeholder="영상에 대한 설명을 입력해주세요.", required=true)
             input(type="submit", value="업로드")

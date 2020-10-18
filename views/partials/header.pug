@@ -7,7 +7,15 @@ header.header
             input(type="text", placeholder="검색어를 입력해주세요.", name="searchWrd")
     .header_column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) Login
+            if !user.isAuthenticated
+                li
+                    a(href=routes.join) 회원가입
+                li
+                    a(href=routes.login) 로그인
+            else
+                li
+                    a(href=routes.upload) 업로드
+                li
+                    a(href=routes.user_detail(user.id)) 프로필
+                li
+                    a(href=routes.logout) 로그아웃

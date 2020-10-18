@@ -1,4 +1,14 @@
 extends ../layout/main
 
 block content
-    p 검색어는 #{searchingBy}
+    .search_header
+        h3 검색어는 #{searchingBy}
+    .search_videos
+        each video in videos
+            +videoBlock({
+                id:video.id,
+                title:video.title,
+                description:video.description,
+                views:video.views,
+                videoFile:video.videoFile
+            })
