@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './router/userRouter';
-import videoRouter from './router/userRouter';
+import videoRouter from './router/videoRouter';
 import globalRouter from './router/globalRouter';
 import { localMiddleware } from './middleware';
 import routes from './routes';
