@@ -1,8 +1,13 @@
 import express from 'express';
+import routes from '../routes';
+import { editProfile, userDetail } from '../controllers/userController.js';
 
 const userRouter = express.Router();
-export default userRouter;
 
+userRouter.get(routes.editProfile, editProfile);
+userRouter.get(routes.userDetail, userDetail);
+
+export default userRouter;
 // userRouter.get('/', (req, res) => {
 //   res.send('user home');
 // });

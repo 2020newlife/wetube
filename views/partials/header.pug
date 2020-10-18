@@ -1,5 +1,6 @@
 header
-    h1.title Suntube
+    h1.title
+        a(href=routes.home) #{siteName}
     .search
         form(action=routes.search, method="get")
             input(type="text", placeholder="검색", name="term")
