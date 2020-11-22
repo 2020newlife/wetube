@@ -44,12 +44,56 @@ export const video_postUpload = async (req, res) => {
   // To Do : 비디오 저장 및 업로드
   res.redirect(routes.video_detail(newVideo.id));
 };
-export const video_detail = (req, res) => {
-  res.render('video/video_detail', { pageTitle: 'Video Detail' });
+export const video_detail = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    console.log(id);
+    const video = await Video.findById(id);
+    console.log(video);
+    res.render('video/video_detail', { pageTitle: 'Video Detail', video });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
 };
-export const edit_video = (req, res) => {
-  res.render('video/edit_video', { pageTitle: 'Edit Video' });
+export const getEdit_video = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render('video/edit_video', { pageTitle: `Edit $(video.title)`, video });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
 };
-export const delete_video = (req, res) => {
-  res.render('video/delete_video', { pageTitle: 'Delete Video' });
+export const postEdit_video = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, description },
+  } = req;
+  console.log(id, title, description);
+  try {
+    await Video.findOneAndUpdate({ _id: id }, { title, description });
+    res.redirect(routes.video_detail(id));
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
+// export const delete_video = (req, res) => {
+//   console.log(req);
+// };
+
+export const delete_video = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  console.log(id);
+  try {
+    await Video.findOneAndRemove({ _id: id });
+  } catch (error) {}
+  res.redirect(routes.home);
 };

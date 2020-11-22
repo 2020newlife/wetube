@@ -2,8 +2,8 @@ extends ../layout/main
 
 block content
     .form_container
-        form(action=`/videos${routes.edit_video}`, method="post")
-            input(type="text", name="title", placeholder="영상의 제목을 입력해주세요.")
-            textarea(name="description", placeholder="영상에 대한 설명을 입력해주세요.")
+        form(action=routes.edit_video(video.id), method="post")
+            input(type="text", name="title", placeholder="영상의 제목을 입력해주세요.",value=video.title)
+            textarea(name="description", placeholder="영상에 대한 설명을 입력해주세요.")=video.description
             input(type="submit", value="수정")
-        a.form_container_link.form_container_link-delete(href=`/videos${routes.delete_video}`) 삭제
+        a.form_container_link.form_container_link-delete(href=routes.delete_video(video.id)) 삭제
