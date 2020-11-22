@@ -16,10 +16,10 @@ export const search = (req, res) => {
 };
 
 //video
-export const videoGetUpload = (req, res) => {
+export const video_getUpload = (req, res) => {
   res.render('video/video_upload', { pageTitle: 'Upload' });
 };
-export const videoPostUpload = (req, res) => {
+export const video_postUpload = (req, res) => {
   const {
     body: { file, title, description },
   } = req;
