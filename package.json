@@ -20,6 +20,7 @@
     "helmet": "^3.18.0",
     "mongoose": "^5.10.15",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "prettier-plugin-pug": "^1.0.0-alpha.8",
     "pug": "^3.0.0"
   },

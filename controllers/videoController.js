@@ -1,9 +1,20 @@
 // import { videos } from '../db';
 import routes from '../routes';
+import Video from '../models/Video';
 
 //user
-export const home = (req, res) =>
-  res.render('home', { pageTitle: 'Root', videos });
+export const home = async (req, res) => {
+  try {
+    const videos = await Video.find({});
+    console.log(videos);
+
+    res.render('home', { pageTitle: 'Root', videos });
+  } catch (error) {
+    console.log(error);
+    res.render('home', { pageTitle: 'Root', videos: [] });
+  }
+};
+
 export const search = (req, res) => {
   // Es5
   //const searchingBy = req.query.searchWrd;
@@ -19,12 +30,19 @@ export const search = (req, res) => {
 export const video_getUpload = (req, res) => {
   res.render('video/video_upload', { pageTitle: 'Upload' });
 };
-export const video_postUpload = (req, res) => {
+export const video_postUpload = async (req, res) => {
   const {
-    body: { file, title, description },
+    body: { title, description },
+    file: { path },
   } = req;
+  const newVideo = await Video.create({
+    fileUrl: path,
+    title,
+    description,
+  });
+  console.log(newVideo);
   // To Do : 비디오 저장 및 업로드
-  res.redirect(routes.video_detail(33333));
+  res.redirect(routes.video_detail(newVideo.id));
 };
 export const video_detail = (req, res) => {
   res.render('video/video_detail', { pageTitle: 'Video Detail' });
