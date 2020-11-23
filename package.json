@@ -8,11 +8,16 @@
     "delay": "2000"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node init.js"
+    "dev:server": "nodemon --exec babel-node init.js",
+    "dev:assets": "webpack --mode development -w",
+    "build:assets": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "autoprefixer": "^9.4.2",
+    "babel-loader": "^8.2.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -21,6 +26,7 @@
     "mongoose": "^5.10.15",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "node-sass": "^4.11.0",
     "prettier-plugin-pug": "^1.0.0-alpha.8",
     "pug": "^3.0.0"
   },
@@ -28,10 +34,18 @@
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "css-loader": "^2.0.1",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "nodemon": "^2.0.4",
-    "prettier": "2.1.2"
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.15.3",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   }
 }
