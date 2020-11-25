@@ -1,0 +1,29 @@
+.videos {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .videoBlock {
+    width: 370px;
+    height: 270px;
+    margin-bottom: 20px;
+    a {
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      video {
+        width: 100%;
+      }
+      h4 {
+        color: $iColor;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      h6 {
+        opacity: 0.5;
+      }
+    }
+  }

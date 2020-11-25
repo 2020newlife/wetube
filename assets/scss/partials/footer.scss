@@ -1,0 +1,16 @@
+.footer {
+	padding: 15px 0;
+	background-color: $navColor;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: $iColor;
+	flex-flow: column;
+	.footer_icon {
+	  font-size: 30px;
+	  span {
+		font-size: 17px;
+		font-weight: 500;
+	  }
+	}
+  }

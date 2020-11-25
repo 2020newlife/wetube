@@ -2,7 +2,7 @@
 import routes from '../routes';
 import Video from '../models/Video';
 
-//user
+// user
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({});
@@ -15,18 +15,27 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   // Es5
-  //const searchingBy = req.query.searchWrd;
+  // const searchingBy = req.query.searchWrd;
   // Es6
   const {
     query: { searchWrd: searchingBy },
   } = req;
-  console.log(req.query);
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: 'i' },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  console.log(videos);
+
   res.render('video/search', { pageTitle: 'Search', searchingBy, videos });
 };
 
-//video
+// video
 export const video_getUpload = (req, res) => {
   res.render('video/video_upload', { pageTitle: 'Upload' });
 };
@@ -35,6 +44,7 @@ export const video_postUpload = async (req, res) => {
     body: { title, description },
     file: { path },
   } = req;
+  console.log(path);
   const newVideo = await Video.create({
     fileUrl: path,
     title,

@@ -1,5 +1,10 @@
-@import "./config/_variables.scss";
-
-body{
-    background-color: $bgColor;
-}
+@import "./config/_variables.scss"; // sass파일에는 _를 이름앞에 붙인다.
+@import "./config/reset.scss";
+@import "main.scss";
+@import "./partials/header.scss";
+@import "./partials/footer.scss";
+@import "./partials/snsLogin.scss";
+@import "./form.scss";
+@import "./video/videoDetail.scss";
+@import "./video/videoList.scss";
+@import "./video/search.scss";

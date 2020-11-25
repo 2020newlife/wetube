@@ -1,4 +1,10 @@
+# DynamoDB Local files
+.dynamodb/
+
 node_modules/
 
 # dotenv environment variables file
 .env
+
+package-lock.json
+uploads 

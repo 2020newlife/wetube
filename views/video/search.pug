@@ -6,11 +6,12 @@ block content
     .search_header
         h3 검색어는 #{searchingBy}
     .search_videos
+        if videos.length == 0
+            h5 일치하는 데이터가 없습니다.
         each video in videos
             +videoBlock({
                 id:video.id,
                 title:video.title,
-                description:video.description,
                 views:video.views,
-                videoFile:video.videoFile
+                videoFile:video.fileUrl
             })

@@ -1,0 +1,54 @@
+.header {
+    background-color: $navColor;
+    color: $iColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    .header_column {
+      a {
+        cursor: pointer;
+        i {
+          font-size: 30px;
+          font-weight: 700;
+        }
+      }
+      form {
+        input {
+          background-color: $inputColor;
+          color: $fontColor;
+          padding: 10px 0 10px 20px;
+          width: 100%;
+          font-size: 17px;
+          border: 1px solid $fontColor;
+          &::placeholder {
+            color: $iColor;
+            font-size: 17px;
+            font-weight: 600;
+          }
+          &:focus {
+            border: 1px solid $iColor;
+            color: $fontColor;
+          }
+        }
+      }
+      ul {
+        display: flex;
+        li {
+          margin-left: 20px;
+          a {
+            padding: 10px 10px;
+            background-color: $btnColor;
+            color: $fontColor;
+            &:hover {
+              border: 1px solid $iColor;
+              color: $iColor;
+            }
+          }
+        }
+      }
+    }
+    .header_column:nth-child(2) {
+      width: 30%;
+    }
+  }

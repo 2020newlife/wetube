@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, {
@@ -10,11 +11,11 @@ mongoose.connect(process.env.MONGO_URL, {
 const db = mongoose.connection;
 
 const dbConnectionSuccessFn = () => console.log('DB연결에 성공했습니다.');
-const dbConnectionFailFn = (error) =>
+const dbConnectionFailFn = error =>
   console.log(`DB연결에 실패했습니다. ${error}`);
 
 db.once('open', dbConnectionSuccessFn);
-db.on('eroor', dbConnectionFailFn);
+db.on('error', dbConnectionFailFn);
 
 // export const videos = [
 //   {

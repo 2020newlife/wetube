@@ -1,0 +1,25 @@
+.sns-login {
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column;
+    width: 30%;
+    button.github {
+      //padding: 15px 0;
+      background-color: $githubColor;
+    }
+    button.facebook {
+      background-color: $faceBookColor;
+    }
+    button {
+      font-size: 20px;
+      color: $fontColor;
+      border-radius: 5px;
+      border: 1px solid $fontColor;
+      margin-top: 20px;
+      padding: 7px 0;
+      cursor: pointer;
+      &:hover {
+        border: 2px solid $fontColor;
+      }
+    }
+  }
