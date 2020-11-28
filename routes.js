@@ -11,6 +11,9 @@ const USERS = '/users';
 const USERS_DETAIL = '/:id';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
+// Github
+const GITHUB = '/auth/github';
+const GITHUB_CALLBACK = '/auth/github/callback';
 
 // Videos
 const VIDEOS = '/videos';
@@ -26,31 +29,31 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  user_detail: (id) => {
+  user_detail: id => {
     if (id) return `/users/${id}`;
-    else return USERS_DETAIL;
+    return USERS_DETAIL;
   },
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK,
   edit_profile: EDIT_PROFILE,
   change_password: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  video_detail: (id) => {
+  video_detail: id => {
     if (id) return `/videos/${id}`;
-    else return VIDEO_DETAIL;
+    return VIDEO_DETAIL;
   },
-  edit_video: (id) => {
+  edit_video: id => {
     if (id) {
       return `/videos/${id}/edit`;
-    } else {
-      return EDIT_VIDEO;
     }
+    return EDIT_VIDEO;
   },
-  delete_video: (id) => {
+  delete_video: id => {
     if (id) {
       return `/videos/${id}/delete`;
-    } else {
-      return DELETE_VIDEO;
     }
+    return DELETE_VIDEO;
   },
 };
 
