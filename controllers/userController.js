@@ -82,6 +82,40 @@ export const githubLoginCallback = async (
   }
 };
 
+export const facebookLogin = passport.authenticate('facebook');
+
+export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const facebookLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  cb
+) => {
+  const {
+    _json: { id, name, email },
+  } = profile; // profile 안의 변수 가지고 오기
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.facebookId = id;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      facebookId: id,
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`,
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);

@@ -14,6 +14,9 @@ const CHANGE_PASSWORD = '/change-password';
 // Github
 const GITHUB = '/auth/github';
 const GITHUB_CALLBACK = '/auth/github/callback';
+// Facebook
+const FB = '/auth/facebook';
+const FB_CALLBACK = '/auth/facebook/callback';
 
 // Videos
 const VIDEOS = '/videos';
@@ -35,6 +38,8 @@ const routes = {
   },
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,
+  facebook: FB,
+  facebookCallback: FB_CALLBACK,
   edit_profile: EDIT_PROFILE,
   change_password: CHANGE_PASSWORD,
   videos: VIDEOS,
