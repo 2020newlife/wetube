@@ -15,6 +15,7 @@ import {
   postNaverLogin,
   kakaoLogin,
   postkakaoLogin,
+  getMe,
 } from '../controllers/userController';
 import { home, search } from '../controllers/videoController';
 import { onlyPublic, onlyPrivate } from '../middleware';
@@ -52,6 +53,7 @@ globalRouter.get(
   passport.authenticate('kakao', { failureRedirect: '/login' }),
   postkakaoLogin
 );
+globalRouter.get(routes.me, getMe);
 globalRouter.get(routes.logout, onlyPrivate, logout);
 globalRouter.get(routes.search, search);
 

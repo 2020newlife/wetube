@@ -2,11 +2,11 @@ extends ../layout/main
 
 block content
     .form_container
-        form(action=`/users${routes.edit_profile}`, method="post")
+        form(action=`/users${routes.edit_profile}`, method="post", enctype="multipart/form-data")
             label(for="avatar") Avatar
-            input(type="file", id="avatar", name="avatar")
-            input(type="email", name="email", placeholder="계정명은 이메일을 입력해주세요.")
-            input(type="text", name="name", placeholder="이름을 입력해주세요.")
+            input(type="file", id="avatar", name="avatar", accept="image/*")
+            input(type="email", name="email", placeholder="계정명은 이메일을 입력해주세요." value=loggedUser.email)
+            input(type="text", name="name", placeholder="이름을 입력해주세요.", value=loggedUser.name)
             input(type="submit", value="수정")
         //a.form_container_link(href="/users"+routes.change_password) 비밀번호를 잊어버리셨습니까?
-        a.form_container_link(href=`/users${routes.change_password}`) 비밀번호를 잊어버리셨습니까?
+        a.form_container_link(href=`/users${routes.change_password}`) 비밀번호 변경

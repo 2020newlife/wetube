@@ -204,9 +204,69 @@ export const logout = (req, res) => {
 };
 
 // user
-export const edit_profile = (req, res) =>
+
+export const getMe = (req, res) => {
+  res.render('user/user_detail', { pageTitle: 'User Details', user: req.user });
+};
+
+export const user_detail = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render('user/user_detail', {
+      pageTitle: 'User Details',
+      user,
+    });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
+export const getEdit_profile = (req, res) =>
   res.render('user/edit_profile', { pageTitle: 'Edit Profile' });
-export const change_password = (req, res) =>
+
+export const postEdit_profile = async (req, res) => {
+  const {
+    body: { name, email },
+    file,
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      // DB 바꾸기
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl, // 혹시 변경 안 할 시 null 들어갈 수도 있는 것 방지
+    });
+    // // req 바꾸기
+    // req.user.name = name;
+    // req.user.email = email;
+    // req.user.avatarUrl = file ? file.path : req.user.avartarUrl;
+    res.redirect(routes.me);
+  } catch (error) {
+    res.redirect('user/edit_profile', { pageTitle: 'Edit Profile' });
+  }
+};
+
+export const getChange_password = (req, res) =>
   res.render('user/change_password', { pageTitle: 'Change Password' });
-export const user_detail = (req, res) =>
-  res.render('user/user_detail', { pageTitle: 'User Detail' });
+
+export const postChange_password = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword1 },
+  } = req;
+  try {
+    if (newPassword !== newPassword1) {
+      res.status(400);
+      res.redirect(`/users/${routes.change_password}`);
+      return;
+    }
+    await req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me); // passport-local-mongoose 의 changePasswordl() 매서드를 통해 form 태그에서 전소된 값을 받아 업데이트할 수 있다.
+  } catch (error) {
+    res.status(400);
+    res.redirect(`/users/${routes.change_password}`);
+    console.log(error);
+  }
+};

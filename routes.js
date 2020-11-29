@@ -9,8 +9,9 @@ const SEARCH = '/search';
 const USERS = '/users';
 //  :id로 입력하면 변하는 값이라는걸 인식한다.
 const USERS_DETAIL = '/:id';
-const EDIT_PROFILE = '/edit-profile';
-const CHANGE_PASSWORD = '/change-password';
+const ME = '/me';
+const EDIT_PROFILE = '/me/edit-profile';
+const CHANGE_PASSWORD = '/me/edit-profile/change-password';
 // Github
 const GITHUB = '/auth/github';
 const GITHUB_CALLBACK = '/auth/github/callback';
@@ -51,6 +52,7 @@ const routes = {
   kakao: KAKAO,
   kakaoCallback: KAKAO_CALLBACK,
   edit_profile: EDIT_PROFILE,
+  me: ME,
   change_password: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,

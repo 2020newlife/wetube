@@ -1,4 +1,17 @@
 extends ../layout/main
+include ../mixin/videoBlock
 
 block content
-    p User Detail
+    .user-profile 
+        .user-profile__header
+            if user.avatarUrl
+                img.U-avatar(src=user.avatarUrl)
+            else 
+                div
+            h4.profile__username=user.name
+        if loggedUser && loggedUser.id === user.id
+            .user-profile__btns
+            a(href=`/users${routes.edit_profile}`)
+                button Edit Profile
+            a(href=`/users${routes.change_password}`)
+                button Change Password

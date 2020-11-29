@@ -7,7 +7,7 @@ header.header
             input(type="text", placeholder="검색", name="searchWrd")
     .header_column
         ul
-            if !user
+            if !loggedUser
                 li
                     a(href=routes.join) 회원가입
                 li
@@ -16,6 +16,6 @@ header.header
                 li
                     a(href=`/videos${routes.upload}`) 업로드
                 li
-                    a(href=routes.user_detail(user.id)) 프로필
+                    a(href=routes.user_detail(loggedUser.id)) 프로필
                 li
                     a(href=routes.logout) 로그아웃
