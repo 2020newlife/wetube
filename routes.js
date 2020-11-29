@@ -17,6 +17,12 @@ const GITHUB_CALLBACK = '/auth/github/callback';
 // Facebook
 const FB = '/auth/facebook';
 const FB_CALLBACK = '/auth/facebook/callback';
+// Naver
+const NAVER = '/auth/naver';
+const NAVER_CALLBACK = '/auth/naver/callback';
+// Kakao
+const KAKAO = '/auth/kakao';
+const KAKAO_CALLBACK = '/auth/kakao/callback';
 
 // Videos
 const VIDEOS = '/videos';
@@ -40,6 +46,10 @@ const routes = {
   githubCallback: GITHUB_CALLBACK,
   facebook: FB,
   facebookCallback: FB_CALLBACK,
+  naver: NAVER,
+  naverCallback: NAVER_CALLBACK,
+  kakao: KAKAO,
+  kakaoCallback: KAKAO_CALLBACK,
   edit_profile: EDIT_PROFILE,
   change_password: CHANGE_PASSWORD,
   videos: VIDEOS,

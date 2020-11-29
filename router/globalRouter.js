@@ -11,6 +11,10 @@ import {
   postGithubLogin,
   facebookLogin,
   postFacebookLogin,
+  naverLogin,
+  postNaverLogin,
+  kakaoLogin,
+  postkakaoLogin,
 } from '../controllers/userController';
 import { home, search } from '../controllers/videoController';
 import { onlyPublic, onlyPrivate } from '../middleware';
@@ -36,7 +40,18 @@ globalRouter.get(
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   postFacebookLogin
 );
-
+globalRouter.get(routes.naver, naverLogin);
+globalRouter.get(
+  routes.naverCallback,
+  passport.authenticate('naver', { failureRedirect: '/login' }),
+  postNaverLogin
+);
+globalRouter.get(routes.kakao, kakaoLogin);
+globalRouter.get(
+  routes.kakaoCallback,
+  passport.authenticate('kakao', { failureRedirect: '/login' }),
+  postkakaoLogin
+);
 globalRouter.get(routes.logout, onlyPrivate, logout);
 globalRouter.get(routes.search, search);
 

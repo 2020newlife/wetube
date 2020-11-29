@@ -1,10 +1,14 @@
 import passport from 'passport';
 import GithubStrategy from 'passport-github';
 import FacebookStrategy from 'passport-facebook';
+import NaverStrategy from 'passport-naver';
+import KakaoStrategy from 'passport-kakao';
 import User from './models/User';
 import {
   githubLoginCallback,
   facebookLoginCallback,
+  naverLoginCallback,
+  kakaoLoginCallback,
 } from './controllers/userController';
 import routes from './routes';
 
@@ -26,11 +30,33 @@ passport.use(
     {
       clientID: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackURL: `https://68553c034090.ngrok.io${routes.facebookCallback}`,
+      callbackURL: `https://a5cd27448cf9.ngrok.io${routes.facebookCallback}`,
       profileFields: ['id', 'displayName', 'photos', 'email'],
       scope: ['public_profile', 'email'],
     },
     facebookLoginCallback
+  )
+);
+
+passport.use(
+  new NaverStrategy(
+    {
+      clientID: process.env.NAVER_ID,
+      clientSecret: process.env.NAVER_SECRET,
+      callbackURL: `http://localhost:5000${routes.naverCallback}`,
+    },
+    naverLoginCallback
+  )
+);
+
+passport.use(
+  new KakaoStrategy(
+    {
+      clientID: process.env.KAKAO_ID,
+      clientSecret: process.env.KAKAO_SECRET, // API 키만 있어도 되긴함//
+      callbackURL: `http://localhost:5000${routes.kakaoCallback}`,
+    },
+    kakaoLoginCallback
   )
 );
 

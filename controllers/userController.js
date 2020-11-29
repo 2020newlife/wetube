@@ -116,6 +116,88 @@ export const facebookLoginCallback = async (
   }
 };
 
+// Naver
+export const naverLogin = passport.authenticate('naver');
+
+export const postNaverLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const naverLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  done
+) => {
+  const {
+    _json: { id, profile_image, displayName, email },
+  } = profile; // profile 안의 변수 가지고 오기
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.naverId = id;
+      user.save();
+      return done(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name: displayName || null,
+      naverId: id,
+      avatarUrl: profile_image,
+    });
+    return done(null, newUser);
+  } catch (error) {
+    return done(error);
+  }
+};
+// console.log(accessToken, refreshToken, profile, done);
+
+// profile_image displayName
+
+// Kakao
+export const kakaoLogin = passport.authenticate('kakao');
+
+export const postkakaoLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const kakaoLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  done
+  // ) => {
+  //   console.log(accessToken, refreshToken, profile, done);
+  // };
+) => {
+  const {
+    id,
+    username: name,
+    _json: {
+      properties: { profile_image },
+      kakao_account: { email },
+    },
+  } = profile; // profile 안의 변수 가지고 오기
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.kakaoId = id;
+      user.save();
+      return done(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      kakaoId: id,
+      avatarUrl: profile_image,
+    });
+    return done(null, newUser);
+  } catch (error) {
+    return done(error);
+  }
+};
+// profile_image_url, email,
+
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);

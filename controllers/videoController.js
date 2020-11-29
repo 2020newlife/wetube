@@ -6,7 +6,7 @@ import Video from '../models/Video';
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({});
-    console.log(videos);
+    // console.log(videos);
 
     res.render('home', { pageTitle: 'Root', videos });
   } catch (error) {
@@ -30,7 +30,6 @@ export const search = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(videos);
 
   res.render('video/search', { pageTitle: 'Search', searchingBy, videos });
 };
