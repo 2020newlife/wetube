@@ -7,6 +7,7 @@ block content
         .infoBox
             .infoBox_column
                 h5.video_title=video.title  
+                a(href=routes.user_detail(video.creator.id))=video.creator.name
             .infoBox_column
                 .infoBox_column-item
                     span.video_views 조회수 : #{video.views}회

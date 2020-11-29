@@ -240,9 +240,9 @@ export const postEdit_profile = async (req, res) => {
       avatarUrl: file ? file.path : req.user.avatarUrl, // 혹시 변경 안 할 시 null 들어갈 수도 있는 것 방지
     });
     // // req 바꾸기
-    req.user.name = name;
-    req.user.email = email;
-    req.user.avatarUrl = file ? file.path : req.user.avartarUrl;
+    // req.user.name = name;
+    // req.user.email = email;
+    // req.user.avatarUrl = file ? file.path : req.user.avartarUrl;
     res.redirect(routes.me);
   } catch (error) {
     res.redirect('user/edit_profile', { pageTitle: 'Edit Profile' });

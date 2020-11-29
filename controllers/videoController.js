@@ -43,14 +43,15 @@ export const video_postUpload = async (req, res) => {
     body: { title, description },
     file: { path },
   } = req;
-  console.log(path);
   const newVideo = await Video.create({
     fileUrl: path,
     title,
     description,
+    creator: req.user.id,
   });
-  console.log(newVideo);
-  // To Do : 비디오 저장 및 업로드
+  // 비디오 저장 및 업로드
+  req.user.videos.push(newVideo._id);
+  req.user.save();
   res.redirect(routes.video_detail(newVideo.id));
 };
 export const video_detail = async (req, res) => {
@@ -58,10 +59,12 @@ export const video_detail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    console.log(id);
     const video = await Video.findById(id);
-    console.log(video);
-    res.render('video/video_detail', { pageTitle: 'Video Detail', video });
+    // populate은 type이 object id일 때만 불러올 수 있음
+    res.render('video/video_detail', {
+      pageTitle: 'Video Detail',
+      video,
+    });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
