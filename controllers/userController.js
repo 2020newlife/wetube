@@ -258,12 +258,21 @@ export const postChange_password = async (req, res) => {
   } = req;
   try {
     if (newPassword !== newPassword1) {
-      res.status(400);
+      res.status(400); // 크롬이 비밀번호 업데이트 못하게 하기
       res.redirect(`/users/${routes.change_password}`);
       return;
     }
     await req.user.changePassword(oldPassword, newPassword);
     res.redirect(routes.me); // passport-local-mongoose 의 changePasswordl() 매서드를 통해 form 태그에서 전소된 값을 받아 업데이트할 수 있다.
+
+    // 아래는 Steve 블로그 사람 코드인데, 위에 코드만으로도 변경 잘 됨
+    // if문 return; 다음에 추가되어있음
+    // const user = await User.findOneAndRemove({
+    //   email: req.user.email
+    // });
+    // console.log(req.user);
+    // await user.setPassword(newPassword);
+    // await user.save();
   } catch (error) {
     res.status(400);
     res.redirect(`/users/${routes.change_password}`);
