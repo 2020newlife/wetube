@@ -1,5 +1,6 @@
 import passport from 'passport';
 import routes from '../routes';
+import Video from '../models/Video';
 import User from '../models/User';
 
 // golbal
@@ -205,8 +206,11 @@ export const logout = (req, res) => {
 
 // user
 
-export const getMe = (req, res) => {
-  res.render('user/user_detail', { pageTitle: 'User Details', user: req.user });
+export const getMe = async (req, res) => {
+  const { user } = req;
+  const videos = await Video.find({ creator: user._id });
+  // 유저프로필에 비디오 추가할 경우 videos 추가해서 넘겨줘야 프로필 수정, 비밀번호 변경 post 시 에러 안 남
+  res.render('user/user_detail', { pageTitle: 'User Details', user, videos });
 };
 
 export const user_detail = async (req, res) => {
@@ -214,10 +218,19 @@ export const user_detail = async (req, res) => {
     params: { id },
   } = req;
   try {
+    // const user = await User.findById(id).populate('videos');
+    // console.log(user);
+    // console.log(user.videos);
+    // 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
     const user = await User.findById(id);
+    const videos = await Video.find({ creator: id });
+    // console.log(videos);
+    // console.log(`user.videos: ${user.videos}`);
+    // console.log(`user.videos: ${user.videos}`);
     res.render('user/user_detail', {
       pageTitle: 'User Details',
       user,
+      videos,
     });
   } catch (error) {
     res.redirect(routes.home);
@@ -267,7 +280,7 @@ export const postChange_password = async (req, res) => {
 
     // 아래는 Steve 블로그 사람 코드인데, 위에 코드만으로도 변경 잘 됨
     // if문 return; 다음에 추가되어있음
-    // const user = await User.findOneAndRemove({
+    // const user = await User.findOne({
     //   email: req.user.email
     // });
     // console.log(req.user);

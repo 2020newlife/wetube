@@ -15,3 +15,25 @@ block content
                 button Edit Profile
             a(href=`/users${routes.change_password}`)
                 button Change Password
+        .videoBlock
+            each video in videos
+                //- video(src=`/${video.fileUrl}`, controls=true)
+                +videoBlock({
+                    id:video.id,
+                    title:video.title,
+                    description:video.description,
+                    views:video.views,
+                    videoFile:video.fileUrl
+                })
+
+
+
+    //- .videos
+    //-     each video in videos
+    //-         +videoBlock({
+    //-             id:video.id,
+    //-             title:video.title, 
+    //-             description:video.description,
+    //-             views:video.views,
+    //-             videoFile:video.fileUrl
+    //-         })

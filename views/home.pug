@@ -11,3 +11,68 @@ block content
                 views:video.views,
                 videoFile:video.fileUrl
             })
+    //- 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
+
+
+
+//- block content
+//-     div.home
+//-         each video in videos
+//-             +mainVideo({
+//-                 id:video.id,
+//-                 thumbnail:video.fileUrl,
+//-                 title:video.title,
+//-                 views:video.views,
+//-                 timestamp:video.createdAt
+//-             })
+
+
+
+//- 비교 중
+
+
+//- home_vidoes:{
+//-   views: 0,
+//-   comments: [],
+//-   _id: 5fc3894150eaa15e776d4d4e,
+//-   fileUrl: 'uploads/videos/f779037e278edaad259e073c680c2ab6',
+//-   title: '로희1',
+//-   description: '설명입니다.',
+//-   creator: 5fc3892450eaa15e776d4d4d,
+//-   createdAt: 2020-11-29T11:42:57.007Z,
+//-   __v: 0
+//- },{
+//-   views: 0,
+//-   comments: [],
+//-   _id: 5fdd9fe3ac3a746600326b54,
+//-   fileUrl: 'uploads/videos/12e4d0f07f223a5908ff454a8ee43507',
+//-   title: '로희3',
+//-   description: '333',
+//-   creator: 5fdd9dc21f19b865b51e61a6,
+//-   createdAt: 2020-12-19T06:38:27.751Z,
+//-   __v: 0
+//- },{
+
+
+
+//- user.videos: {
+//-   views: 0,
+//-   comments: [],
+//-   _id: 5fdd9fe3ac3a746600326b54,
+//-   fileUrl: 'uploads/videos/12e4d0f07f223a5908ff454a8ee43507',
+//-   title: '로희3',
+//-   description: '333',
+//-   creator: 5fdd9dc21f19b865b51e61a6,
+//-   createdAt: 2020-12-19T06:38:27.751Z,
+//-   __v: 0
+//- },{
+//-   views: 0,
+//-   comments: [],
+//-   _id: 5fddaef45abca468300bbdd4,
+//-   fileUrl: 'uploads/videos/bb1a005a297eee1de4347471c13845f4',
+//-   title: 'newvideo',
+//-   description: '1',
+//-   creator: 5fdd9dc21f19b865b51e61a6,
+//-   createdAt: 2020-12-19T07:42:44.541Z,
+//-   __v: 0
+//- },{

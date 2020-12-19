@@ -1,7 +1,12 @@
 mixin videoBlock(video = {})
   .videoBlock
     a(href=routes.video_detail(video.id))
-      video.videoBlock_thumbnail(src=video.videoFile, controls=true)
+      video.videoBlock_thumbnail(src=`/${video.videoFile}`, controls=true)
+      //- 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
+      
+      //- video.videoBlock_thumbnail(src=video.fileUrl, controls=true)
+      //- video.videoBlock_thumbnail(src=`/${video.fileUrl}`, controls=true)
+      //- 이 부분 문제는 아님 여기는 홈 등 다른 pug 에서 넘겨 받은 걸 동일하게 디자인 적용할 때 쓰는 것 
       h4.videoBlock_title=video.title
       h6.videoBlock_views 조회수 #{video.views}회
       h6.videoBlock_description=video.description

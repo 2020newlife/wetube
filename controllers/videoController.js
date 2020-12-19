@@ -7,7 +7,8 @@ export const home = async (req, res) => {
   try {
     const videos = await Video.find({});
     // console.log(videos);
-
+    // console.log(`home_vidoes:${videos}`);
+    // 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
     res.render('home', { pageTitle: 'Root', videos });
   } catch (error) {
     console.log(error);
@@ -76,8 +77,36 @@ export const getEdit_video = async (req, res) => {
     params: { id },
   } = req;
   try {
+    /*
+    // ------------------------------------------------------------------
+    // ISSUE: this not working
     const video = await Video.findById(id);
-    res.render('video/edit_video', { pageTitle: `Edit $(video.title)`, video });
+    console.log(video.creator); // 5c59528c08578e13cedaf540
+    console.log(req.user.id); // 5c59528c08578e13cedaf540
+    console.log(typeof video.creator); // object
+    console.log(typeof req.user.id); // string
+    console.log(video.creator == req.user.id); // true
+    console.log(video.creator === req.user.id); // false
+    if (video.creator !== req.user.id) {
+      throw Error('not authorized');
+    } else {
+      res.render('editVideo', { pageName: `Edit ${video.title}`, video });
+    }
+    => populate 해야지 일치하게 나옴
+    */
+
+    // ------------------------------------------------------------------
+    // this works fine
+    const video = await Video.findById(id).populate('creator');
+
+    if (video.creator.id !== req.user.id) {
+      throw Error('not authorized');
+    } else {
+      res.render('video/edit_video', {
+        pageTitle: `Edit $(video.title)`,
+        video,
+      });
+    }
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -104,9 +133,19 @@ export const delete_video = async (req, res) => {
   const {
     params: { id },
   } = req;
-  console.log(id);
+  // console.log(id);
   try {
-    await Video.findOneAndRemove({ _id: id });
-  } catch (error) {}
+    /* ISSUE: not working
+    const video = await Video.findById(id);
+     */
+    const video = await Video.findById(id).populate('creator');
+    if (video.creator !== req.user.id) {
+      throw Error();
+    } else {
+      await Video.findOneAndRemove({ _id: id });
+    }
+  } catch (error) {
+    console.log(error);
+  }
   res.redirect(routes.home);
 };
