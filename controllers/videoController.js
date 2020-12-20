@@ -62,7 +62,7 @@ export const video_detail = async (req, res) => {
   try {
     const video = await Video.findById(id).populate('creator');
     // populate은 type이 object id일 때만 불러올 수 있음
-    console.log(video);
+    // console.log(video);
     res.render('video/video_detail', {
       pageTitle: 'Video Detail',
       video,

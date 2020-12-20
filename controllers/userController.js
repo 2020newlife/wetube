@@ -209,6 +209,7 @@ export const logout = (req, res) => {
 export const getMe = async (req, res) => {
   const { user } = req;
   const videos = await Video.find({ creator: user._id });
+  // header.pug 에서  !loggedUser(=req.user)로 확인되므로 그냥 /me로 들어가도 괜찮음
   // 유저프로필에 비디오 추가할 경우 videos 추가해서 넘겨줘야 프로필 수정, 비밀번호 변경 post 시 에러 안 남
   res.render('user/user_detail', { pageTitle: 'User Details', user, videos });
 };
