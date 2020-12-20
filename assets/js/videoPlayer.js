@@ -89,6 +89,17 @@ const handleDrag = event => {
   }
 };
 
+const restoreVolume = () => {
+  const volume = localStorage.getItem('volume');
+  //   console.log(volume);
+  if (volume) {
+    videoPlayer.volume = volume;
+    volumeRange.value = volume;
+  } else {
+    videoPlayer.volume = 0.5;
+  }
+};
+
 const enterFullScreen = () => {
   // 그냥 함수는 지원 안 해서 webkit(크롬엔진) 쓰라고 되어 있음
   // 익스플로러는 ms / 모질라는 moz
@@ -167,6 +178,7 @@ const handleEnded = () => {
 };
 
 const initVideoPlayer = () => {
+  restoreVolume();
   playBtn.addEventListener('click', handlePlayClick);
   volumeBtn.addEventListener('click', handleVolumeClick);
   // 풀스크린 체크해주는 함수가 없어서 이벤트리스너를 바꾸는 방식으로 해야됨
@@ -174,7 +186,7 @@ const initVideoPlayer = () => {
   // 비디오가 메타데이터를 로드할 때까지 기다려야함
   // 그냥 함수바로 쓰면 메타 데이터 로드 전이라서 계산이 안 돼서 Nan 뜸
   videoPlayer.onloadedmetadata = setTotalTime();
-  //   videoPlayer.addEventListener('loadedmetadata', setTotalTime);
+  videoPlayer.addEventListener('loadedmetadata', setTotalTime);
   videoPlayer.addEventListener('ended', handleEnded);
   volumeRange.addEventListener('input', handleDrag);
 };

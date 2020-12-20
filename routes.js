@@ -35,8 +35,10 @@ const DELETE_VIDEO = '/:id/delete';
 // api
 const API = '/api';
 const REGISTER_VIEW = '/:id/view';
-const POST_COMMENT = '/:id/comment';
-const DELETE_COMMENT = '/:id/delete';
+// const POST_COMMENT = '/:id/comment';
+const POST_COMMENT = '/comment/add';
+// const DELETE_COMMENT = '/:id/delete';
+const DELETE_COMMENT = '/comment/delete';
 
 const routes = {
   home: HOME,

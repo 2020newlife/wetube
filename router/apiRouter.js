@@ -1,10 +1,10 @@
 import express from 'express';
 import routes from '../routes';
+import { postRegisterView } from '../controllers/videoController';
 import {
   postAddComment,
   postDeleteComment,
-  postRegisterView,
-} from '../controllers/videoController';
+} from '../controllers/commentController';
 import { onlyPrivate } from '../middleware';
 
 const apiRouter = express.Router();

@@ -53,8 +53,8 @@ export const video_postUpload = async (req, res) => {
     creator: req.user.id,
   });
   // 비디오 저장 및 업로드
-  req.user.videos.push(newVideo._id);
-  req.user.save();
+  // req.user.videos.push(newVideo._id);
+  // req.user.save();
   res.redirect(routes.video_detail(newVideo.id));
 };
 export const video_detail = async (req, res) => {
@@ -62,12 +62,16 @@ export const video_detail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const video = await Video.findById(id).populate('creator');
+    const video = await Video.findById(id)
+      .populate('creator')
+      .populate('comments');
+    const comments = await Comment.find({ videoId: id });
     // populate은 type이 object id일 때만 불러올 수 있음
     // console.log(video);
     res.render('video/video_detail', {
       pageTitle: 'Video Detail',
       video,
+      comments,
     });
   } catch (error) {
     console.log(error);
@@ -165,50 +169,6 @@ export const postRegisterView = async (req, res) => {
     res.status(400);
   } finally {
     // 마지막은 무조건 이렇게 의미
-    res.end();
-  }
-};
-
-export const postAddComment = async (req, res) => {
-  const {
-    body: { videoId, comment },
-    user,
-  } = req;
-  try {
-    const video = await video.findById(videoId);
-    const newComment = await Comment.create({
-      comment,
-      creatorId: user.id,
-      videoId,
-    });
-    video.comments.push(newComment.id);
-    await video.save();
-    res.send({ commentId: newComment.id });
-  } catch (error) {
-    console.log(error);
-    res.status(400);
-    res.end();
-  }
-};
-
-export const postDeleteComment = async (req, res) => {
-  const {
-    body: { commentId },
-    user,
-  } = req;
-  try {
-    console.log('asdf: ', commentId);
-    const comment = await Comment.findById(commentId);
-    if (comment.creatorId.toString() === user.id) {
-      await Video.comments.remove(comment.id);
-      await video.save();
-      await comment.remove();
-    } else {
-      res.status(400);
-    }
-  } catch (error) {
-    res.status(400);
-  } finally {
     res.end();
   }
 };

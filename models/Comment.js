@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const CommentSchema = new mongoose.Schema({
-  text: {
+  comment: {
     type: String,
     required: '내용을 입력하지 않았습니다.',
   },
@@ -9,10 +9,15 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  creator: {
+  creatorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: 'Creator is required',
+  },
+  videoId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Video',
+    required: 'Video is required',
   },
 });
 
