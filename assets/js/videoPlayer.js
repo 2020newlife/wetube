@@ -1,24 +1,31 @@
 const videoContainer = document.getElementById('jsVideoPlayer');
 
-let videoPlayer;
-let playBtn;
-let volumeBtn;
-let fullScreenBtn;
-let currentTime;
-let totalTime;
+const videoPlayer = videoContainer.querySelector('#jsVideoPlayer video');
+const playBtn = videoContainer.querySelector('#jsPlayButton');
+const volumeBtn = videoContainer.querySelector('#jsVolumeButton');
+const fullScreenBtn = videoContainer.querySelector('#jsFullScreenButton');
+const currentTime = videoContainer.querySelector('#jsCurrentTime');
+const totalTime = videoContainer.querySelector('#jsTotalTime');
+const volumeRange = document.querySelector('#jsVolume');
+const viewString = document.querySelector('#jsViewString');
 
 const PLAY_ICON = `<i class="fas fa-play"></i>`;
 const PAUSE_ICON = `<i class="fas fa-pause"></i>`;
 const VOLUME_MEDIUM = `<i class="fas fa-volume-down"></i>`;
 const VOLUME_MUTED = `<i class="fas fa-volume-mute"></i>`;
-const VOLUME_OFF = `<i class="fas fa-volume-off"></i>`;
-const VOLUME_FULL = `<i class="fas fa-volume-up"></i>`;
+const VOLUME_UP = '<i class="fas fa-volume-up"></i>';
+const VOLUME_DOWN = '<i class="fas fa-volume-down"></i>';
+const VOLUME_OFF = '<i class="fas fa-volume-off"></i>';
+
 const FULLSCREEN = `<i class="fas fa-expand"></i>`;
 const FULLSCREEN_OUT = `<i class="fas fa-compress"></i>`;
 
 const volumeMuteIcon = () => (volumeBtn.innerHTML = VOLUME_MUTED);
 const volumeMediumIcon = () => (volumeBtn.innerHTML = VOLUME_MEDIUM);
 const volumeFullIcon = () => (volumeBtn.innerHTML = VOLUME_FULL);
+
+const volumeUpIcon = () => (volumeBtn.innerHTML = VOLUME_UP);
+const volumeDownIcon = () => (volumeBtn.innerHTML = VOLUME_DOWN);
 const volumeOffIcon = () => (volumeBtn.innerHTML = VOLUME_OFF);
 
 const playerPlayIcon = () => (playBtn.innerHTML = PLAY_ICON);
@@ -34,6 +41,16 @@ const outFullScreenIcon = () => (fullScreenBtn.innerHTML = FULLSCREEN_OUT);
 //         videoPlayer.pause()
 //     }
 // })
+
+const registerView = () => {
+  const videoId = window.location.href.split('/videos/')[1];
+  console.log(videoId);
+  fetch(`/api/${videoId}/view`, { method: 'post' })
+    .then(response => response.json())
+    .then(responseJson => {
+      viewString.innerHTML = responseJson.views;
+    });
+};
 
 const handlePlayClick = () => {
   if (videoPlayer.paused) {
@@ -51,9 +68,25 @@ const handleVolumeClick = () => {
     // 이건 readonly 아님 - 불리언값 줌
     videoPlayer.muted = false;
     volumeMediumIcon();
+    volumeRange.value = videoPlayer.volume;
   } else {
     videoPlayer.muted = true;
     volumeMuteIcon();
+    volumeRange.value = 0;
+  }
+};
+
+const handleDrag = event => {
+  const {
+    target: { value },
+  } = event;
+  videoPlayer.volume = value;
+  if (value >= 0.7) {
+    volumeUpIcon();
+  } else if (value >= 0.3) {
+    volumeDownIcon();
+  } else {
+    volumeOffIcon();
   }
 };
 
@@ -135,14 +168,6 @@ const handleEnded = () => {
 };
 
 const initVideoPlayer = () => {
-  videoPlayer = videoContainer.querySelector('#jsVideoPlayer video');
-  playBtn = videoContainer.querySelector('#jsPlayButton');
-  volumeBtn = videoContainer.querySelector('#jsVolumeButton');
-  fullScreenBtn = videoContainer.querySelector('#jsFullScreenButton');
-  currentTime = videoContainer.querySelector('#jsCurrentTime');
-  totalTime = videoContainer.querySelector('#jsTotalTime');
-  viewString = document.querySelector('#jsViewString');
-
   playBtn.addEventListener('click', handlePlayClick);
   volumeBtn.addEventListener('click', handleVolumeClick);
   // 풀스크린 체크해주는 함수가 없어서 이벤트리스너를 바꾸는 방식으로 해야됨
@@ -152,11 +177,13 @@ const initVideoPlayer = () => {
   videoPlayer.onloadedmetadata = setTotalTime();
   //   videoPlayer.addEventListener('loadedmetadata', setTotalTime);
   videoPlayer.addEventListener('ended', handleEnded);
+  volumeRange.addEventListener('input', handleDrag);
 };
 
 // js파일이 하상 모든 페이지 footer 아래 include되는 걸 명심!
 // 이벤트리스너를 이용했을 때 해당 id 못찾으면 null이 돼서 에러냄
 
 if (videoContainer) {
+  registerView();
   initVideoPlayer();
 }

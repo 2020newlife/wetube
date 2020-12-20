@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import userRouter from './router/userRouter';
 import videoRouter from './router/videoRouter';
 import globalRouter from './router/globalRouter';
+import apiRouter from './router/apiRouter';
 import { localMiddleware } from './middleware';
 import routes from './routes';
 
@@ -46,5 +47,6 @@ app.use(localMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

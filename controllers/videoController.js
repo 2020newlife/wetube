@@ -1,6 +1,8 @@
 // import { videos } from '../db';
 import routes from '../routes';
 import Video from '../models/Video';
+import Comment from '../models/Comment';
+import User from '../models/User';
 
 // user
 export const home = async (req, res) => {
@@ -148,4 +150,65 @@ export const delete_video = async (req, res) => {
     console.log(error);
   }
   res.redirect(routes.home);
+};
+
+export const postRegisterView = async (req, res) => {
+  const { id } = req.params;
+  // console.log(req.params);
+  try {
+    const video = await Video.findById(id);
+    video.views += 1;
+    video.save();
+    res.status(200);
+    res.send({ views: video.views });
+  } catch (error) {
+    res.status(400);
+  } finally {
+    // 마지막은 무조건 이렇게 의미
+    res.end();
+  }
+};
+
+export const postAddComment = async (req, res) => {
+  const {
+    body: { videoId, comment },
+    user,
+  } = req;
+  try {
+    const video = await video.findById(videoId);
+    const newComment = await Comment.create({
+      comment,
+      creatorId: user.id,
+      videoId,
+    });
+    video.comments.push(newComment.id);
+    await video.save();
+    res.send({ commentId: newComment.id });
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+    res.end();
+  }
+};
+
+export const postDeleteComment = async (req, res) => {
+  const {
+    body: { commentId },
+    user,
+  } = req;
+  try {
+    console.log('asdf: ', commentId);
+    const comment = await Comment.findById(commentId);
+    if (comment.creatorId.toString() === user.id) {
+      await Video.comments.remove(comment.id);
+      await video.save();
+      await comment.remove();
+    } else {
+      res.status(400);
+    }
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
 };
