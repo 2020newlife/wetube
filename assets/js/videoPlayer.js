@@ -1,11 +1,10 @@
 const videoContainer = document.getElementById('jsVideoPlayer');
-
 const videoPlayer = videoContainer.querySelector('#jsVideoPlayer video');
+const currentTime = videoContainer.querySelector('#jsCurrentTime');
+const totalTime = videoContainer.querySelector('#jsTotalTime');
 const playBtn = videoContainer.querySelector('#jsPlayButton');
 const volumeBtn = videoContainer.querySelector('#jsVolumeButton');
 const fullScreenBtn = videoContainer.querySelector('#jsFullScreenButton');
-const currentTime = videoContainer.querySelector('#jsCurrentTime');
-const totalTime = videoContainer.querySelector('#jsTotalTime');
 const volumeRange = document.querySelector('#jsVolume');
 const viewString = document.querySelector('#jsViewString');
 
@@ -44,7 +43,7 @@ const outFullScreenIcon = () => (fullScreenBtn.innerHTML = FULLSCREEN_OUT);
 
 const registerView = () => {
   const videoId = window.location.href.split('/videos/')[1];
-  console.log(videoId);
+  //   console.log(videoId);
   fetch(`/api/${videoId}/view`, { method: 'post' })
     .then(response => response.json())
     .then(responseJson => {
