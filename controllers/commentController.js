@@ -14,9 +14,8 @@ export const postAddComment = async (req, res) => {
       creatorId: user.id,
       videoId,
     });
-
-    console.log('newcomment 값:', newComment);
-
+    // console.log('newcomment 값:', newComment);
+    res.send({ commentId: newComment.id });
     res.status(200);
     res.end();
     // res.redirect(routes.video_detail(videoId));
