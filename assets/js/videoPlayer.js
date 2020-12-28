@@ -1,10 +1,13 @@
-const videoContainer = document.getElementById('jsVideoPlayer');
-const videoPlayer = videoContainer.querySelector('#jsVideoPlayer video');
-const currentTime = videoContainer.querySelector('#jsCurrentTime');
-const totalTime = videoContainer.querySelector('#jsTotalTime');
-const playBtn = videoContainer.querySelector('#jsPlayButton');
-const volumeBtn = videoContainer.querySelector('#jsVolumeButton');
-const fullScreenBtn = videoContainer.querySelector('#jsFullScreenButton');
+import axios from 'axios';
+import getBlobDuration from 'get-blob-duration';
+
+const videoContainer = document.getElementById('jsVideoContainer');
+const videoPlayer = document.querySelector('#jsVideoPlayer');
+const currentTime = document.querySelector('#jsCurrentTime');
+const totalTime = document.querySelector('#jsTotalTime');
+const playBtn = document.querySelector('#jsPlayButton');
+const volumeBtn = document.querySelector('#jsVolumeButton');
+const fullScreenBtn = document.querySelector('#jsFullScreenButton');
 const volumeRange = document.querySelector('#jsVolume');
 const viewString = document.querySelector('#jsViewString');
 
@@ -154,19 +157,23 @@ const setCurrentTime = () => {
   currentTime.innerHTML = formatData(Math.floor(videoPlayer.currentTime));
 };
 
-const setTotalTime = () => {
-  const totalTimeString = formatData(videoPlayer.duration);
+const setTotalTime = async () => {
+  // const totalTimeString = formatData(videoPlayer.duration);
+  // console.log(totalTimeString);
 
   // Issue: getBlobDuration 안 된다.search_videos
   // ISSUE: getBlobDuration 안된다
   // console.log('Sadfasdfasdf');
-  // const videoBlob = await fetch(videoPlayer.src).then(response => response.blob());
+  const videoBlob = await fetch(videoPlayer.src).then(response =>
+    response.blob()
+  );
   // videoBlob.type = 'video/mp4';
-  // console.log(videoBlob);
-  // const duration = await getBlobDuration(videoBlob);
-  // console.log('duration', duration);
-  // const totalTimeString = formatDate(duration);
-  // console.log('totalTimeString', duration);
+  // 이 부분 주석처리하니까 Nan 오류 해결됨
+  // console.log(`videoBlob:${videoBlob}`);
+  const duration = await getBlobDuration(videoBlob);
+  // console.log('duration:', duration);
+  const totalTimeString = formatData(duration);
+  // console.log('totalTimeString:', duration);
 
   totalTime.innerHTML = totalTimeString;
   setInterval(setCurrentTime, 1000);

@@ -2,6 +2,9 @@ extends ../layout/main
 
 block content
     .form_container
+        .record-container#jsRecordContainer
+            video#jsVideoPreview
+            button#jsRecordButton Start Recording
         form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
             label(for="file") 영상을 업로드 하려면 클릭하세요.
             input(type="file", name="videoFile", id="file", required=true, accept="video/*")
