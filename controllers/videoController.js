@@ -139,16 +139,19 @@ export const delete_video = async (req, res) => {
   const {
     params: { id },
   } = req;
-  // console.log(id);
+  console.log(`id: ${id}`);
   try {
     /* ISSUE: not working
     const video = await Video.findById(id);
      */
     const video = await Video.findById(id).populate('creator');
-    if (video.creator !== req.user.id) {
+    if (video.creator.id !== req.user.id) {
+      // console.log(video.creator.id);
+      // console.log(req.user.id);
       throw Error();
     } else {
       await Video.findOneAndRemove({ _id: id });
+      await Video.save();
     }
   } catch (error) {
     console.log(error);
