@@ -1,6 +1,6 @@
 mixin videoPlayer(video={})
     .videoPlayer#jsVideoContainer
-        video#jsVideoPlayer(src=`/${video.src}`, controls=false)
+        video#jsVideoPlayer(src=video.src, controls=false)
         .videoPlayer__controls
             .videoPlayer__colum
                 input.videopPlayer__volume#jsVolume(type="range", min="0", max="1", step="0.1", value="0.5")

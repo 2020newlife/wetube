@@ -1,7 +1,7 @@
 mixin videoBlock(video = {})
   .videoBlock
     a(href=routes.video_detail(video.id))
-      video.videoBlock_thumbnail(src=`/${video.videoFile}`, controls=true)
+      video.videoBlock_thumbnail(src=video.videoFile, controls=false)
       //- 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
       
       //- video.videoBlock_thumbnail(src=video.fileUrl, controls=true)

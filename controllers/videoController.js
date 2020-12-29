@@ -42,12 +42,13 @@ export const video_getUpload = (req, res) => {
   res.render('video/video_upload', { pageTitle: 'Upload' });
 };
 export const video_postUpload = async (req, res) => {
+  // console.log(req.file);
   const {
     body: { title, description },
-    file: { path },
+    file: { location }, // 파일에서 path 받아오기 -> s3 로 변경 후 location으로 변경해야함 .
   } = req;
   const newVideo = await Video.create({
-    fileUrl: path,
+    fileUrl: location,
     title,
     description,
     creator: req.user.id,

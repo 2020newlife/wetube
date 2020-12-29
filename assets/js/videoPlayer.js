@@ -169,7 +169,7 @@ const setTotalTime = async () => {
   );
   // videoBlob.type = 'video/mp4';
   // 이 부분 주석처리하니까 Nan 오류 해결됨
-  // console.log(`videoBlob:${videoBlob}`);
+  console.log(`videoBlob:${videoBlob}`);
   const duration = await getBlobDuration(videoBlob);
   // console.log('duration:', duration);
   const totalTimeString = formatData(duration);

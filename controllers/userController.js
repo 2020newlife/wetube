@@ -251,7 +251,7 @@ export const postEdit_profile = async (req, res) => {
       // DB 바꾸기
       name,
       email,
-      avatarUrl: file ? file.path : req.user.avatarUrl, // 혹시 변경 안 할 시 null 들어갈 수도 있는 것 방지
+      avatarUrl: file ? file.location : req.user.avatarUrl, // 혹시 변경 안 할 시 null 들어갈 수도 있는 것 방지
     });
     // // req 바꾸기
     // req.user.name = name;
