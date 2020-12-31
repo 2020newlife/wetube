@@ -2,6 +2,10 @@
   "name": "wetube",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
+  },
   "main": "index.js",
   "nodemonConfig": {
     "ext": "js json mjs pug",
@@ -21,10 +25,6 @@
   },
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "12.18.3",
-    "npm": "6.14.6"
-  },
   "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/polyfill": "^7.12.1",
@@ -54,9 +54,7 @@
     "passport-local-mongoose": "^6.0.1",
     "passport-naver": "^1.0.6",
     "prettier-plugin-pug": "^1.0.0-alpha.8",
-    "pug": "^3.0.0"
-  },
-  "devDependencies": {
+    "pug": "^3.0.0",
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
