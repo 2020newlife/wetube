@@ -8,13 +8,19 @@
     "delay": "2000"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --ignore 'scss'",
-    "dev:assets": "webpack --mode development -w",
-    "build:assets": "webpack --mode production"
+    "dev:server": "nodemon --exec babel-node src/init.js --ignore 'scss'",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w --config webpack.config.js",
+    "bulid:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack --config webpack.config.js",
+    "copyAll": "cp -R src/static build && cp -R src/views build",
+    "tunnel": "lt --port 5000",
+    "build": "npm run bulid:server && npm run build:assets && npm run copyAll",
+    "prebuild": "rm -rf build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/polyfill": "^7.12.1",
     "autoprefixer": "^9.4.2",
     "aws-sdk": "^2.818.0",
@@ -48,6 +54,7 @@
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
+    "cross-env": "^7.0.3",
     "css-loader": "^2.0.1",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
