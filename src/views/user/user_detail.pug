@@ -5,7 +5,7 @@ block content
     .user-profile 
         .user-profile__header
             if  user.avatarUrl
-                img.U-avatar(src=`/${user.avatarUrl}`)
+                img.U-avatar(src=user.avatarUrl)
             else 
                 div
             h4.profile__username=user.name
