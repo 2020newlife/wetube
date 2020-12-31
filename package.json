@@ -15,7 +15,9 @@
     "copyAll": "cp -R src/static build && cp -R src/views build",
     "tunnel": "lt --port 5000",
     "build": "npm run bulid:server && npm run build:assets && npm run copyAll",
-    "prebuild": "rm -rf build"
+    "prebuild": "rm -rf build",
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build"
   },
   "author": "",
   "license": "ISC",

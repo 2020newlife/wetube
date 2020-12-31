@@ -242,7 +242,7 @@ export const getEdit_profile = (req, res) =>
   res.render('user/edit_profile', { pageTitle: 'Edit Profile' });
 
 export const postEdit_profile = async (req, res) => {
-  console.log(req.file);
+  // console.log(req.file);
   const {
     body: { name, email },
     file,
