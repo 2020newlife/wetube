@@ -19,7 +19,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:5000${routes.githubCallback}`,
+      callbackURL: `https://github.com/settings/applications/1423428${routes.githubCallback}`,
     },
     githubLoginCallback
   )
