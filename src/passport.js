@@ -19,7 +19,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `https://github.com/settings/applications/1423428${routes.githubCallback}`,
+      callbackURL: `https://obscure-mountain-87912.herokuapp.com${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -30,7 +30,7 @@ passport.use(
     {
       clientID: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackURL: `https://2a9a377e155e.ngrok.io${routes.facebookCallback}`,
+      callbackURL: `https://obscure-mountain-87912.herokuapp.com${routes.facebookCallback}`,
       profileFields: ['id', 'displayName', 'photos', 'email'],
       scope: ['public_profile', 'email'],
     },
@@ -43,7 +43,7 @@ passport.use(
     {
       clientID: process.env.NAVER_ID,
       clientSecret: process.env.NAVER_SECRET,
-      callbackURL: `http://localhost:5000${routes.naverCallback}`,
+      callbackURL: `https://obscure-mountain-87912.herokuapp.com${routes.naverCallback}`,
     },
     naverLoginCallback
   )
@@ -54,7 +54,7 @@ passport.use(
     {
       clientID: process.env.KAKAO_ID,
       clientSecret: process.env.KAKAO_SECRET, // API 키만 있어도 되긴함//
-      callbackURL: `http://localhost:5000${routes.kakaoCallback}`,
+      callbackURL: `https://obscure-mountain-87912.herokuapp.com${routes.kakaoCallback}`,
     },
     kakaoLoginCallback
   )
