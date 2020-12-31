@@ -10,7 +10,7 @@
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/init.js --ignore 'scss'",
     "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w --config webpack.config.js",
-    "bulid:server": "babel src --out-dir build --ignore 'src/assets' --ignore'src/static' --ignore 'src/webpack.config.js'",
+    "bulid:server": "babel src --out-dir build --ignore 'src/assets' --ignore 'src/static' --ignore 'src/webpack.config.js'",
     "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack --config webpack.config.js",
     "copyAll": "cp -R src/static build && cp -R src/views build",
     "tunnel": "lt --port 5000",
