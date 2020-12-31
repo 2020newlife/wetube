@@ -11,7 +11,8 @@ import { onlyPrivate, uploadAvatar } from '../middleware';
 
 const userRouter = express.Router();
 
-userRouter.get(routes.user_detail(), onlyPrivate, user_detail);
+userRouter.get(routes.user_detail(), user_detail);
+// 유저 디테일 화면은 로그인 안 해도 보여야 함.
 
 userRouter.get(routes.edit_profile, onlyPrivate, getEdit_profile);
 userRouter.post(
