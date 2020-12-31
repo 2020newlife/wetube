@@ -19,10 +19,6 @@
     "start": "PRODUCTION=true node build/init.js",
     "prestart": "npm run build"
   },
-  "engines": {
-    "node": "0.8",
-    "npm": "1.2.x"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
