@@ -2,6 +2,7 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import aws from 'aws-sdk';
 import routes from './routes';
+import User from './models/User';
 
 const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_PRIVATE_KEY,
@@ -46,6 +47,17 @@ export const localMiddleware = (req, res, next) => {
   next();
 };
 
+export const toHeaderUserAvatar = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+    res.locals.headerUser = user || null;
+  } catch (error) {
+    console.log(error);
+  }
+  next();
+};
+
+// user
 export const onlyPublic = (req, res, next) => {
   if (req.user) {
     res.redirect(routes.home);

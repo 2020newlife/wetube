@@ -18,43 +18,53 @@ import {
   getMe,
 } from '../controllers/userController';
 import { home, search } from '../controllers/videoController';
-import { onlyPublic, onlyPrivate } from '../middleware';
+import { toHeaderUserAvatar, onlyPublic, onlyPrivate } from '../middleware';
 
 const globalRouter = express.Router();
 
-globalRouter.get(routes.home, home);
-globalRouter.get(routes.join, onlyPublic, getJoin);
-globalRouter.post(routes.join, onlyPublic, postJoin, postLogin);
-globalRouter.get(routes.login, onlyPublic, getLogin);
-globalRouter.post(routes.login, onlyPublic, postLogin);
+globalRouter.get(routes.home, toHeaderUserAvatar, home);
+globalRouter.get(routes.join, toHeaderUserAvatar, onlyPublic, getJoin);
+globalRouter.post(
+  routes.join,
+  toHeaderUserAvatar,
+  onlyPublic,
+  postJoin,
+  postLogin
+);
+globalRouter.get(routes.login, toHeaderUserAvatar, onlyPublic, getLogin);
+globalRouter.post(routes.login, toHeaderUserAvatar, onlyPublic, postLogin);
 // Github
-globalRouter.get(routes.github, githubLogin);
+globalRouter.get(routes.github, toHeaderUserAvatar, githubLogin);
 globalRouter.get(
   routes.githubCallback,
+  toHeaderUserAvatar,
   passport.authenticate('github', { failureRedirect: '/login' }),
   postGithubLogin
 );
 // Facebook
-globalRouter.get(routes.facebook, facebookLogin);
+globalRouter.get(routes.facebook, toHeaderUserAvatar, facebookLogin);
 globalRouter.get(
   routes.facebookCallback,
+  toHeaderUserAvatar,
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   postFacebookLogin
 );
-globalRouter.get(routes.naver, naverLogin);
+globalRouter.get(routes.naver, toHeaderUserAvatar, naverLogin);
 globalRouter.get(
   routes.naverCallback,
+  toHeaderUserAvatar,
   passport.authenticate('naver', { failureRedirect: '/login' }),
   postNaverLogin
 );
-globalRouter.get(routes.kakao, kakaoLogin);
+globalRouter.get(routes.kakao, toHeaderUserAvatar, kakaoLogin);
 globalRouter.get(
   routes.kakaoCallback,
+  toHeaderUserAvatar,
   passport.authenticate('kakao', { failureRedirect: '/login' }),
   postkakaoLogin
 );
-globalRouter.get(routes.me, getMe);
+globalRouter.get(routes.me, toHeaderUserAvatar, getMe);
 globalRouter.get(routes.logout, onlyPrivate, logout);
-globalRouter.get(routes.search, search);
+globalRouter.get(routes.search, toHeaderUserAvatar, search);
 
 export default globalRouter;

@@ -1,21 +1,33 @@
 header.header
-    .header_column
+    .header_logo
         a(href=routes.home)
-            i.fab.fa-google-play &nbsp;&nbsp; #{siteName}
-    .header_column
-        form.frm(action=routes.search, method="get")
+            i.fab.fa-youtube 
+            span.title #{siteName}
+    .header_search
+        form.searchForm(action=routes.search, method="get")
             input(type="text", placeholder="검색", name="searchWrd")
-    .header_column
+            button                
+                i.fas.fa-search
+
+    .header_userInfo
         ul
             if !loggedUser
                 li
-                    a(href=routes.join) 회원가입
-                li
-                    a(href=routes.login) 로그인
+                    a(href=routes.login)
+                        i.fas.fa-user-circle
+                        span.title 로그인
             else
                 li
-                    a(href=`/videos${routes.upload}`) 업로드
+                    a(href=`/videos${routes.upload}`) 
+                        i.fas.fa-video-plus
+                        span.title 업로드
                 li
-                    a(href=routes.user_detail(loggedUser.id)) 프로필
+                    a.user-profile__header(href=routes.user_detail(loggedUser.id))
+                        if  headerUser
+                            img.U-avatar(src=headerUser.avatarUrl)
+                            span.profile__username=headerUser.name
+                            |님
+                        else 
+                            i.fas.fa-user-circle
                 li
                     a(href=routes.logout) 로그아웃
