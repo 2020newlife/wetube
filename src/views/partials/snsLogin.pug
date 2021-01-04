@@ -1,22 +1,13 @@
 .sns-login
-    button.github
-        a(href=routes.github)
-        span
-               i.fab.fa-github
-        |깃허브로 로그인
-
-    button.facebook
-        a(href=routes.facebook)
-        span
-            i.fab.fa-facebook
-        |페이스북으로 로그인
-
-    button
-        a(href=routes.naver)
-        span
-        |네이버로 로그인
-
-    button
-        a(href=routes.kakao)
-        span
-        |카카오로 로그인
+    a.github(href=routes.github)
+        i.fab.fa-github
+        span 깃허브로 로그인
+    a.facebook(href=routes.facebook)
+        i.fab.fa-facebook
+        span 페이스북으로 로그인
+    a.naver(href=routes.naver)
+        span.fab.fa-naver N
+        span 네이버로 로그인
+    a.kakao(href=routes.kakao)
+        span.fab.fa-kakao K
+        span 카카오로 로그인

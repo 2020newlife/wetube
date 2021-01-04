@@ -1,74 +1,74 @@
 .form_container {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  form {
+    width: 30%;
     display: flex;
-    align-items: center;
     flex-flow: column;
-    form {
-      width: 30%;
-      display: flex;
-      flex-flow: column;
-      label {
-        margin-top: 30px;
-        padding: 25px 0 25px 10px;
-        border-radius: 5px;
-        border: 1px solid $fontColor;
-        cursor: pointer;
-        color: $iColor;
-      }
-      input {
-        &[type="file"] {
-          display: none;
-        }
-        margin-top: 30px;
-        background-color: $inputColor;
-        padding: 20px 0 20px 10px;
-        border-radius: 5px;
-        border: 1px solid $fontColor;
-        font-size: 17px;
-        color: $fontColor;
-        &::placeholder {
-          color: $iColor;
-        }
-        &:last-child {
-          background-color: $iColor;
-          cursor: pointer;
-          font-size: 20px;
-          font-weight: 700;
-          &:hover {
-            border: 2px solid $fontColor;
-          }
-        }
-        &:focus {
-          border: 2px solid $iColor;
-        }
-      }
-      textarea {
-        margin-top: 30px;
-        background-color: $inputColor;
-        color: $fontColor;
-        font-size: 17px;
-        height: 200px;
-        &::placeholder {
-          color: $iColor;
-        }
-        &:focus {
-          border: 2px solid $iColor;
-        }
-      }
+    label {
+      margin-top: 30px;
+      padding: 25px 0 25px 10px;
+      border-radius: 5px;
+      border: 1px solid $fontColor;
+      cursor: pointer;
+      color: $iColor;
     }
-    a {
-      text-align: center;
-      width: 30%;
-      margin-top: 25px;
-      background-color: $btnColor;
-      color: $fontColor;
-      font-size: 20px;
-      font-weight: 700;
+    input {
+      &[type="file"] {
+        display: none;
+      }
+      margin-top: 30px;
+      background-color: $inputColor;
       padding: 20px 0 20px 10px;
       border-radius: 5px;
       border: 1px solid $fontColor;
-      &:hover {
-        border: 1px solid $iColor;
+      font-size: 17px;
+      color: $fontColor;
+      &::placeholder {
         color: $iColor;
+      }
+      &:last-child {
+        background-color: $iColor;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 700;
+        &:hover {
+          border: 2px solid $fontColor;
+        }
+      }
+      &:focus {
+        border: 2px solid $iColor;
+      }
+    }
+    textarea {
+      margin-top: 30px;
+      background-color: $inputColor;
+      color: $fontColor;
+      font-size: 17px;
+      height: 200px;
+      &::placeholder {
+        color: $iColor;
+      }
+      &:focus {
+        border: 2px solid $iColor;
       }
     }
   }
+  a {
+    text-align: center;
+    width: 30%;
+    margin-top: 25px;
+    background-color: $btnColor;
+    color: $fontColor;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px 0 20px 10px;
+    border-radius: 5px;
+    border: 1px solid $fontColor;
+    &:hover {
+      border: 1px solid $iColor;
+      color: $iColor;
+    }
+  }
+}

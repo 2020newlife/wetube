@@ -1,25 +1,50 @@
 .sns-login {
-    margin-top: 30px;
-    display: flex;
-    flex-flow: column;
-    width: 30%;
-    button.github {
-      //padding: 15px 0;
-      background-color: $githubColor;
-    }
-    button.facebook {
-      background-color: $faceBookColor;
-    }
-    button {
-      font-size: 20px;
-      color: $fontColor;
-      border-radius: 5px;
-      border: 1px solid $fontColor;
-      margin-top: 20px;
-      padding: 7px 0;
-      cursor: pointer;
-      &:hover {
-        border: 2px solid $fontColor;
-      }
-    }
+  // width:100%;
+  // max-width: 400px;
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column;
+  width: 30%;
+  a {
+    font-size: 20px;
+    color: $fontColor;
+    border-radius: 5px;
+    border: 1px solid $fontColor;
+    margin-top: 20px;
+    padding: 7px 0;
+    cursor: pointer;
+    &:hover {
+      border: 2px solid $fontColor;
+    };
+  };
+  .github {
+    //padding: 15px 0;
+    background-color: $githubColor;
+    i{
+      margin-right: 5px; 
+    };
   }
+  .facebook {
+    background-color:
+    $faceBookColor;
+    i{
+      margin-right: 5px; 
+    };
+  };
+  .naver {
+    background-color: #19ce60;
+    .fab.fa-naver{
+      font-weight: bold;
+      color: $white-color;
+      margin-right: 5px; 
+    };
+  };
+  .kakao {
+    background-color: #fbe700;
+    .fab.fa-kakao{
+      font-weight: bold;
+      color: $white-color;
+      margin-right: 5px; 
+    };
+  };
+};

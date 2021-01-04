@@ -10,14 +10,13 @@ export const home = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const user = await User.findById(req.user.id);
     const videos = await Video.find({});
     // console.log(videos);
     // console.log(`home_vidoes:${videos}`);
     // 문제해결됨 => videoBlock에 video src 경로에 `${}`추가 안해서 오류 난 거였음
     // console.log(`user:${user}`);
     // console.log(`req.user:${req.user}`);
-    res.render('home', { pageTitle: 'Root', videos, user });
+    res.render('home', { pageTitle: 'Root', videos });
   } catch (error) {
     console.log(error);
     res.render('home', { pageTitle: 'Root', videos: [] });

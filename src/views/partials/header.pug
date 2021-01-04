@@ -1,33 +1,67 @@
 header.header
-    .header_logo
-        a(href=routes.home)
-            i.fab.fa-youtube 
-            span.title #{siteName}
-    .header_search
-        form.searchForm(action=routes.search, method="get")
-            input(type="text", placeholder="검색", name="searchWrd")
-            button                
-                i.fas.fa-search
+    a.header_logo(href=routes.home)
+        i.fab.fa-youtube 
+        span #{siteName}
+    form.searchForm(action=routes.search, method="get")
+        input(type="text", placeholder="Suntube 검색", name="searchWrd")
+        button(type="reset")                
+            i.fas.fa-search
+    ul.header_userInfo
+        if !loggedUser
+            li.loginBtn
+                a.user-login_header(href=routes.login) 
+                    i.fas.fa-user-circle 
+                    span 로그인
+        else
+            li.login_state
+                a.video-upload_header(href=`/videos${routes.upload}`)
+                    i.fas.fa-plus-square
+                    span 업로드
 
-    .header_userInfo
-        ul
-            if !loggedUser
-                li
-                    a(href=routes.login)
-                        i.fas.fa-user-circle
-                        span.title 로그인
-            else
-                li
-                    a(href=`/videos${routes.upload}`) 
-                        i.fas.fa-video-plus
-                        span.title 업로드
-                li
-                    a.user-profile__header(href=routes.user_detail(loggedUser.id))
-                        if  headerUser
-                            img.U-avatar(src=headerUser.avatarUrl)
-                            span.profile__username=headerUser.name
-                            |님
-                        else 
-                            i.fas.fa-user-circle
-                li
-                    a(href=routes.logout) 로그아웃
+            li.login_state
+                a.user-profile__header(href=routes.user_detail(loggedUser.id))
+                    if headerUser
+                        if headerUser.avatarUrl !== null
+                            img.U-avatar(src=headerUser.avatarUrl) 
+                            span #{headerUser.name}님
+                        else
+                            i.U-avatar_basic.fas.fa-user-circle 
+                            span 이름 미등록            
+            li.login_state
+                a.user-logout_header(href=routes.logout)
+                    i.fas.fa-times-circle
+                    span 로그아웃
+    a.toggleBtn_header(href="#")
+        i.fas.fa-bars
+
+    //- .header_userInfo
+    //-     ul
+    //-         if !loggedUser
+    //-             li
+    //-                 .user-login_header
+    //-                     a(href=routes.login)
+    //-                         i.fas.fa-user-circle
+    //-                         span 로그인
+    //-         else
+    //-             li
+    //-                 .video-upload_header
+    //-                     a(href=`/videos${routes.upload}`) 
+    //-                         i.fas.fa-plus-square
+    //-                         span 업로드
+    //-             li
+    //-                 .user-profile__header
+    //-                     a(href=routes.user_detail(loggedUser.id))
+    //-                         if headerUser
+    //-                             if headerUser.avatarUrl !== null
+    //-                                 img.U-avatar(src=headerUser.avatarUrl)
+    //-                                 span #{headerUser.name}님
+    //-                             else
+    //-                                 i.U-avatar_basic.fas.fa-user-circle
+    //-                                 span 이름 미등록
+                            
+                            
+    //-             li
+    //-                 .user-logout_header
+    //-                     a(href=routes.logout) 
+    //-                         i.fas.fa-times-circle
+    //-                         span 로그아웃

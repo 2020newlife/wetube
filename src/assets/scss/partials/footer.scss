@@ -1,10 +1,11 @@
 .footer {
+	width: 100%;
 	padding: 15px 0;
-	background-color: $navColor;
+	background-color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: $iColor;
+	color: $white-color;
 	flex-flow: column;
 	.footer_icon {
 	  font-size: 30px;
@@ -12,5 +13,8 @@
 		font-size: 17px;
 		font-weight: 500;
 	  }
+	}
+	a{
+		color: $white-color;
 	}
   }

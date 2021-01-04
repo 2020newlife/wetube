@@ -1,54 +1,228 @@
-.header {
-    background-color: $navColor;
-    color: $iColor;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    .header_column {
-      a {
-        cursor: pointer;
-        i {
-          font-size: 30px;
-          font-weight: 700;
-        }
-      }
-      form {
-        input {
-          background-color: $inputColor;
-          color: $fontColor;
-          padding: 10px 0 10px 20px;
-          width: 100%;
-          font-size: 17px;
-          border: 1px solid $fontColor;
-          &::placeholder {
-            color: $iColor;
-            font-size: 17px;
-            font-weight: 600;
-          }
-          &:focus {
-            border: 1px solid $iColor;
-            color: $fontColor;
-          }
-        }
-      }
-      ul {
-        display: flex;
-        li {
-          margin-left: 20px;
-          a {
-            padding: 10px 10px;
-            background-color: $btnColor;
-            color: $fontColor;
-            &:hover {
-              border: 1px solid $iColor;
-              color: $iColor;
-            }
-          }
-        }
-      }
-    }
-    .header_column:nth-child(2) {
-      width: 30%;
-    }
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: $black-color;
+  color: $white-color;
+  a {
+    color: $white-color;
+  };
+}
+
+.header_logo {
+  font-size: 25px;
+  display: flex;
+  align-items:center;
+  i {
+    color: $red-color;
+    margin-right: 5px;
+    font-size: 30px;
+  };
+  span {
+    &:hover {
+      color:$iColor;
+    };
   }
+}
+
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  input {
+    width: 80%;
+    padding-left: 10px;
+    height: 30px;
+    background-color: $white-color;
+    border: 1px solid $grey-dark-color;
+    border-right: 0px;
+    &::placeholder {
+      text-align: center;
+      color: $grey-dark-color;
+      font-size: 16px;
+      font-weight: 600;
+    };
+    &:hover {
+      border: 2px solid $iColor;
+    };
+    &:focus {
+      border: 2px solid $iColor;
+      color: black;
+    };
+  };
+  button {
+    width: 20%;
+    height: 30px;
+    padding: 1px;
+    border: 1px solid $grey-dark-color;
+    background-color: $grey-light-color;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: $iColor;
+      border: 2px solid $iColor;
+    };
+    i {
+      font-size: 15px;
+      text-align: center;
+      padding: 0.5px;
+      margin: 0;
+    };
+  };
+}
+
+// .header_userInfo {
+//   display : flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   font-size: $font-medium;
+//   li {
+//     padding: 8px 5px;
+//     &:hover {
+//       background-color: #d49466;
+//       border-radius: 4px;
+//     };
+//     a {
+//       display: flex;
+//       align-items: center;
+//       i {
+//         font-size: 20px;
+//         margin-right: 5px;
+//       };
+//       .U-avatar {
+//         width: $avatar-size;
+//         height: $avatar-size;
+//         border-radius: 50%;
+//         margin-right: 5px;
+//       };
+//     };
+//   };
+// }
+
+.header_userInfo {
+  display : flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-medium;
+  ;
+  li {
+    padding: 8px 5px;
+    &:hover {
+      background-color: #d49466;
+      border-radius: 4px;
+    };
+    a {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      display: flex; // 이 부분 때문에 가운데 정렬 + 전체 행 선택이 안 되었음..
+      align-items: center; // 이 부분 때문에 가운데 정렬 + 전체 행 선택이 안 되었음..
+      i {
+        font-size: $avatar-size;
+        margin-right: 5px;
+      };
+      .U-avatar {
+        width: $avatar-size;
+        height: $avatar-size;
+        border-radius: 50%;
+        margin-right: 5px;
+      };
+    };
+  };
+}
+
+/*li.loginBtn {
+  .user-login_header {
+    width: 65PX;
+    height: 23px;
+    border: 2px solid $white-color;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0;
+    display: flex; 
+    align-items: center;
+    i {
+      font-size: $avatar-size;
+      margin-right: 5px;
+    };  
+    &:hover {
+      border: 2px solid $iColor;
+      color: $iColor;
+    };
+  };
+};
+*/
+
+
+// ul li a {
+//   display: flex;
+//   align-items: center;
+//   i {
+//     font-size: 20px;
+//     margin-right: 5px;
+//   };
+//   .U-avatar {
+//     width: $avatar-size;
+//     height: $avatar-size;
+//     border-radius: 50%;
+//     margin-right: 5px;
+//   };
+// }
+
+.toggleBtn_header{
+  display: none;
+  position: absolute;
+  right: 32px;
+  font-size: 24px;
+  color: $white-color;
+  &:hover {
+    color: $iColor;
+  };
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  };
+  .searchForm {
+    display: none;
+    width: 100%;
+    padding: 0;
+    margin: 8px auto;
+    text-align: center;
+  };
+  .header_userInfo {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width:100%
+  };
+  .header_userInfo li{
+    width:100%;
+    height: 100%;
+    text-align: center;//여기에 추가하고 아래 inline-block 처리
+    font-size: 18px;
+    a { // 이 부분 수정하니 가운데 정렬 + 전체 행 선택됨..
+      width:100%;
+      height:100%;
+      display: inline-block; // 이 부분 수정하니 가운데 정렬 + 전체 행 선택됨..
+      text-align: center;// 이 부분 수정하니 가운데 정렬 + 전체 행 선택됨..
+    };
+  };
+  .toggleBtn_header{
+    display:block; 
+  }
+  .searchForm.active,
+  .header_userInfo.active{
+    display: flex; 
+  }
+
+}
